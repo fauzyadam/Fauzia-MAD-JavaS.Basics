@@ -21,5 +21,5 @@ School:{
     NameOfSchool: "Hive Academy",
 }
 })
-const zakModel = model('Zak',ZakSchema);
-export default zakModel;
+const userModel = model('User' ,userSchema);
+export default userModel;
