@@ -1,24 +1,27 @@
-import mongoose from 'mongoose';
+  import mongoose from 'mongoose';
 const {Schema, model} = mongoose;
 
 
 
-
-// Destructuring
-
 const UserSchema = Schema({
-    userName:{ 
-FirstName: Fauziatu,
-LastName: Iddrisu,
-requred:true
-    },
-DateOfBirth:{
-Number: 13/04/1988,
+    
+    UserName:{
+ FirstName:String,
+ required: true,
+},
+ UserName:{
+     LastName: String,
+     required:true,
+ },
+        
+dateOfBirth:{
+Type: Date,
 required:true
 },
 
 School:{
-    NameOfSchool: "Hive Academy",
+ Type: String,
+ required: true,
 }
 })
 const userModel = model('User' ,userSchema);
