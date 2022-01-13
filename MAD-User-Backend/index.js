@@ -1,17 +1,16 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import userModel from './Schema/schema.js';
+import UserModel from './Schema/schema.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
 const app = express();
 dotenv.config();
-const PORT = 3000
 //middleware
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000 || process.env.PORT;
+const PORT =  process.env.PORT || 5000 ;
 
 const db = process.env.DB_URL;
 mongoose.connect(db, {
@@ -30,8 +29,8 @@ app.get('/',(req, res) =>{
 // Get all users
 app.get('/users',async(req, res) =>{
 
-const allusers = await userModel.find({});
-if(allusers){
+const allUsers = await UserModel.find({});
+if(allUsers){
 //sucess
 return res.status(200).json({
     message:'Users fetched successfully',
@@ -45,15 +44,9 @@ return res.status(200).json({
 }
 });
 
-         app.post('/user', async(req, res)=>{
-             const { firstName, lastName, dateOfBirth, school} =req.body
-        const newUser = await userModel.create({
-            firstName,
-            lastName,
-            dateOfBirth,
-            school
-                    
-                    })
+app.post('/user', async(req, res)=>{
+    //  const { firstName, lastName, dateOfBirth, school} =req.body
+     const newUser = await UserModel.create(req.body)
               if(newUser){
                     //success
                     return res.status(200).json({
@@ -69,6 +62,6 @@ return res.status(200).json({
                 });
     
 
-app.listen((PORT), () => { 
+app.listen(PORT, () => { 
 console.log(`listening on port ${PORT}`);
 })

@@ -1,28 +1,27 @@
   import mongoose from 'mongoose';
 const {Schema, model} = mongoose;
 
-
-
 const UserSchema = Schema({
-    
-    UserName:{
- FirstName:String,
- required: true,
-},
- UserName:{
-     LastName: String,
-     required:true,
- },
-        
-dateOfBirth:{
-Type: Date,
-required:true
-},
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  dateOfBirth: {
+    type: Date,
+    required: true,
+    min:"1996-01-01",
+    max:"2022-01-01"
+  },
+  school: {
+    type: String,
+    required: true
+  },
+});
 
-School:{
- Type: String,
- required: true,
-}
-})
-const userModel = model('User' ,userSchema);
-export default userModel;
+
+const UserModel = model('User',UserSchema);
+export default UserModel;
